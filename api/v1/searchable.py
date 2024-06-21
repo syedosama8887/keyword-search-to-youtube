@@ -7,10 +7,10 @@ import time
 
 router = APIRouter()
 @router.get("/KEY_WORD_FINDER")
-async def search_youtube(keyword: str):
-    return {"result":search_youtube(keyword)}
+async def search_youtube(titile: str):
+    return {"result":search_youtube(titile)}
 
-def search_youtube(keyword):
+def search_youtube(title):
     # Setup the Chrome driver
     s = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=s)
@@ -21,7 +21,7 @@ def search_youtube(keyword):
 
         # Find the search box and input the keyword
         search_box = driver.find_element("name", "search_query")
-        search_box.send_keys(keyword)
+        search_box.send_keys(title)
         search_box.submit()
 
         # Wait for the search results to load
