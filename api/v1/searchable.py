@@ -1,16 +1,15 @@
 from fastapi import APIRouter
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
 router = APIRouter()
 @router.get("/KEY_WORD_FINDER")
-async def search_youtube(titile: str):
-    return {"result":search_youtube(titile)}
+def search_youtube(titile: str):
+    return {"result":scrape_youtube(titile)}
 
-def search_youtube(title):
+def scrape_youtube(title):
     # Setup the Chrome driver
     s = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=s)
